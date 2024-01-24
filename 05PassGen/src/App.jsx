@@ -31,7 +31,7 @@ function App() {
 
   useEffect( () => {
     genPassword()
-  } , [length , numAllowed , charAllowed , genPassword])
+  } , [length , numAllowed , charAllowed , genPassword , ])
 
   const copyToClip = useCallback(()=>{
     passwordRef.current?.select()
@@ -41,7 +41,7 @@ function App() {
   return (
     <>
       <div className="bg-black h-screen w-full flex justify-center items-center flex-col gap-1">
-        <div className="flex justify-center items-center flex-col gap-5 bg-slate-600 h-52 w-3/5 p-5 rounded-2xl text-white">
+        <div className="flex justify-center items-center flex-col gap-5 bg-slate-600 w-3/5 p-5 rounded-2xl text-white">
             <h1 className="text-3xl font-bold font-mono">Generate Password</h1>
             <div className="w-4/5 flex justify-center items-center h-12">
                 <input
@@ -56,6 +56,7 @@ function App() {
                 <button onClick={copyToClip} type="submit" className="bg-red-200 h-full rounded-r-xl px-4 text-black font-bold">Copy</button>
 
             </div>
+            <button className="border-2 p-1 px-2 rounded-xl text-orange-400 font-bold hover:border-green-500 " onClick={genPassword}>Generate New</button>
             <div className="flex items-center gap-8">
                   <div className="flex gap-2 items-center mx-2 px-1 font-bold">
                     <input 
