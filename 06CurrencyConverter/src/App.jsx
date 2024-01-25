@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import InputBox from "./componeds/Inputbox"
+import {InputBox} from "./components"
 import useConvert from "./hooks/useConvert"
 
 
@@ -15,21 +15,22 @@ function App() {
   const options = Object.keys(currencyInfo)
 
   const swap = () =>{
-    setto(from)
-    setfrom(to)
-    setconverted(converted)
-  }
-
+      setfrom(to)
+      setto(from)   
+      setconverted(amount)
+      setAmount(converted)
+}
+  
   const convert = () =>{
-    setconverted(amount*currencyInfo[to])
-  }
-
+      setconverted(amount * currencyInfo[to])
+}
 
   return (
     <div
         className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat"
         style={{
-            backgroundImage: `url('https://images.pexels.com/photos/3532540/pexels-photo-3532540.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')`,
+            // backgroundColor: '#000'
+            backgroundImage: `url('https://images.pexels.com/photos/1055613/pexels-photo-1055613.jpeg?auto=compress&cs=tinysrgb&w=600')`,
         }}
     >
         <div className="w-full">
@@ -45,9 +46,9 @@ function App() {
                             label="From"
                             amount={amount}
                             currencyOptions={options}
-                            onCurrencyChange={(currency) => setAmount(amount)}
                             selectCurrency={from}
-                            onAmountChange={(amount) => setAmount(amount)}
+                            onAmountChange={(amount) => setAmount(amount)}  
+                            onCurrencyChange={(currency) => setfrom(currency)}
                         />
                     </div>
                     <div className="relative w-full h-0.5">
@@ -65,7 +66,7 @@ function App() {
                             amount={converted}
                             currencyOptions={options}
                             onCurrencyChange={(currency) => setto(currency)}
-                            selectCurrency={from}
+                            selectCurrency={to}
                             amountDisable
                         />
                     </div>
