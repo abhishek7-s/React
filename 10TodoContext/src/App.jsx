@@ -2,9 +2,11 @@ import { useState, useEffect } from "react"
 import {TodoProvider} from "./context"
 import {TodoForm, TodoItem} from "./components"
 function App() {
-
+  
   const [todos, setTodos] = useState([])
-
+  const [Currentdate , setCurrentdate] = useState("")
+  let newDate = new Date()
+  
   const addTodo = (todo) => {
       setTodos((prev) => [ {id: Date.now() , ...todo} , ...prev])
   }
@@ -32,7 +34,9 @@ function App() {
     if (todos && todos.length > 0){
       setTodos(todos)
     }
-  }, [])
+      setCurrentdate(newDate.toLocaleDateString())
+
+  }, [newDate])
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos))
@@ -41,8 +45,9 @@ function App() {
   return (
     <TodoProvider value={{todos , addTodo , updateTodo , deleteTodo , toggleTodo}}>
     <div className="bg-[#172842] min-h-screen py-8">
-        <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
-            <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
+        <div className="w-full max-w-2xl mx-auto shadow-md rounded-xl px-4 py-3 text-white bg-slate-700">
+            <h1 className="text-2xl font-bold text-center mt-2">Manage Your Todos</h1>
+            <h2 className="text-center mb-4 mt-2">{Currentdate}</h2>
             <div className="mb-4">  
                 {/* Todo form goes here */} 
                 <TodoForm/>
