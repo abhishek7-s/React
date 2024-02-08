@@ -35,8 +35,7 @@ function App() {
       setTodos(todos)
     }
       setCurrentdate(newDate.toLocaleDateString())
-
-  }, [newDate])
+  }, [])
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos))
